@@ -1,0 +1,137 @@
+Private Sub CommandButton1_Click()
+
+'With Selection.Find
+ '.Forward = True
+ '.Wrap = wdFindStop
+ '.Text = "send"
+ '.Execute
+'End With
+
+With Selection.Find
+    .ClearFormatting
+    .Text = "Name"
+    .Replacement.ClearFormatting
+    .Replacement.Text = recipientName
+    .Execute Replace:=wdReplaceAll, Forward:=True, _
+        Wrap:=wdFindContinue
+End With
+
+With Selection.Find
+    .ClearFormatting
+    .Text = "StorageOption"
+    .Replacement.ClearFormatting
+    .Replacement.Text = storageOption
+    .Execute Replace:=wdReplaceAll, Forward:=True, _
+        Wrap:=wdFindContinue
+End With
+
+With Selection.Find
+    .ClearFormatting
+    .Text = "Company"
+    .Replacement.ClearFormatting
+    .Replacement.Text = Company
+    .Execute Replace:=wdReplaceAll, Forward:=True, _
+        Wrap:=wdFindContinue
+End With
+
+With Selection.Find
+    .ClearFormatting
+    .Text = "portalprefix"
+    .Replacement.ClearFormatting
+    .Replacement.Text = portalPrefix
+    .Execute Replace:=wdReplaceAll, Forward:=True, _
+        Wrap:=wdFindContinue
+End With
+
+'With Selection.Find
+ '   .ClearFormatting
+  '  .Text = "trialEnd"
+   ' .Replacement.ClearFormatting
+    '.Replacement.Text = endDate
+    '.Execute Replace:=wdReplaceAll, Forward:=True, _
+     '   Wrap:=wdFindContinue
+'End With
+
+'replacement words are: Name, StorageOption, CompanyName, trialEnd
+
+'MsgBox recipientName
+'MsgBox storageOption
+'MsgBox Company
+'MsgBox portalPrefix
+'MsgBox endDate
+
+MsgBox "Please select a date on the calendar for the expiration date"
+
+'With Selection.Find
+'    .Forward = True
+'    .Wrap = wdFindStop
+'    .Text = "Fill me in"
+'    .Execute
+'End With
+
+
+Dim sFindText As String
+ Selection.HomeKey wdStory
+ 
+
+'close out of userform
+'Me.hide
+'Me.Unload
+sFindText = "Fill me in"
+Selection.Find.Execute sFindText
+Do Until Selection.Find.Found = False
+Selection.EndKey Unit:=wdLine, Extend:=wdExtend
+        Selection.Range.HighlightColorIndex = wdYellow
+        Selection.MoveRight
+        Selection.Find.Execute
+Loop
+
+Unload UserForm2
+End Sub
+
+Private Sub TextBox1_Change()
+
+End Sub
+
+Private Sub Frame1_Click()
+
+End Sub
+
+Private Sub Image1_Click()
+
+End Sub
+
+Private Sub Label10_Click()
+
+End Sub
+
+Private Sub Label2_Click()
+
+End Sub
+
+Private Sub Label9_Click()
+
+End Sub
+
+Private Sub storageOption_Change()
+
+End Sub
+
+Private Sub storageOption_DropButtonClick()
+storageOption.List = Array("Windows 7 Server", "Windows 8.1 Server", "Windows 10 Server", "Windows Server 2008 R2 Server", "Windows Server 2012 R2", "Centos 6.0 Server", "Centos 7.0 Server", "AWS S3 Bucket", "Microsoft Azure Blob Storage Container")
+End Sub
+Private Sub ComboBox1_DropButtonClick()
+'Months
+ComboBox1.List = Array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December")
+End Sub
+Private Sub Day_DropButtonClick()
+'Days
+Day.List = Array("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31")
+End Sub
+Private Sub Year_DropButtonClick()
+'Years
+Year.List = Array("2017", "2018", "2019")
+End Sub
+Private Sub UserForm_Click()
+
+End Sub
